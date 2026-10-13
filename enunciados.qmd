@@ -6,7 +6,7 @@ format:
 editor: visual
 ---
 
-### Problema 1: La empresa de maquillaje
+# *Problema 1: La empresa de maquillaje*
 
 **Contexto:**
 
@@ -31,14 +31,14 @@ El éxito de estas líneas dependerá de la situación económica general y de l
 La matriz de resultados estimada para los próximos meses es la siguiente:
 
 |                          |               |                  |                 |
-|--------------------------|---------------|------------------|-----------------|
+|--------------------|-----------------|-----------------|-----------------|
 |                          | **e1​ (Auge)** | **e2​ (Estable)** | **e3​ (Crisis)** |
 | $d_1$ (*Low-Cost*)       | 30            | 45               | 60              |
 | $d_2$ (Vegana)           | 50            | 50               | 30              |
 | $d_3$ (*Premium*)        | 90            | 40               | -20             |
 | $d_4$ (Edición Limitada) | 70            | 20               | 10              |
 
-**Cuestionario Verdadero/Falso (Problema 1):**
+### **Cuestionario Verdadero/Falso (Problema 1):**
 
 **1.** Si consideramos la matriz como beneficios (situación favorable), según el criterio optimista (maximax), la mejor decisión es la Línea Premium ($d_3$).
 
@@ -60,7 +60,9 @@ La matriz de resultados estimada para los próximos meses es la siguiente:
 
 **Respuesta:** VERDADERO.
 
-### Problema 2: La Floristería en Cádiz
+------------------------------------------------------------------------
+
+# *Problema 2: La Floristería en Cádiz*
 
 **Contexto:**
 
@@ -86,7 +88,7 @@ El beneficio dependerá de la demanda de los clientes (estados de la naturaleza)
 
 Cada lote de tulipanes le cuesta a la floristería 50 euros. Durante la temporada, cada lote se vende a 120 euros. Los lotes que no se logran vender se marchitan y se tiran a la basura (no generan ingresos).
 
-**Cuestionario Verdadero/Falso (Problema 2):**
+### **Cuestionario Verdadero/Falso (Problema 2):**
 
 **1.** Según el criterio pesimista de Wald (Maximin), la floristería elegiría encargar 100 lotes ($d_1$) porque le garantiza un beneficio mínimo de 7000 euros, evitando los riesgos de grandes pérdidas.
 
