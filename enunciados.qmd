@@ -1,0 +1,109 @@
+---
+title: "Enunciados Trabajo Individual"
+format: 
+  html: default
+  typst: default
+editor: visual
+---
+
+### Problema 1: La empresa de maquillaje
+
+**Contexto:**
+
+La empresa de cosméticos "GlowBeauty" está planificando el lanzamiento de su nueva línea estrella para la próxima temporada. La directora de producto tiene sobre la mesa cuatro posibles líneas de maquillaje (alternativas de decisión):
+
+- $d_1$: Línea *Low-Cost* (enfocada en un público joven y precios bajos).
+
+- $d_2$: Línea Vegana/Natural (productos ecológicos de precio medio).
+
+- $d_3$: Línea *Premium* (alta gama, precios elevados).
+
+- $d_4$: Línea de Edición Limitada (colaboración con una *influencer* famosa).
+
+El éxito de estas líneas dependerá de la situación económica general y de la capacidad adquisitiva de los clientes (estados de la naturaleza):
+
+- $e_1$: Auge económico (alta disposición a gastar).
+
+- $e_2$: Economía estable (demanda normal).
+
+- $e_3$: Crisis económica (baja demanda, recortes en gastos no esenciales).
+
+La matriz de resultados estimada para los próximos meses es la siguiente:
+
+|                          |               |                  |                 |
+|--------------------------|---------------|------------------|-----------------|
+|                          | **e1​ (Auge)** | **e2​ (Estable)** | **e3​ (Crisis)** |
+| $d_1$ (*Low-Cost*)       | 30            | 45               | 60              |
+| $d_2$ (Vegana)           | 50            | 50               | 30              |
+| $d_3$ (*Premium*)        | 90            | 40               | -20             |
+| $d_4$ (Edición Limitada) | 70            | 20               | 10              |
+
+**Cuestionario Verdadero/Falso (Problema 1):**
+
+**1.** Si consideramos la matriz como beneficios (situación favorable), según el criterio optimista (maximax), la mejor decisión es la Línea Premium ($d_3$).
+
+**Respuesta:** VERDADERO.
+
+**2.** Si consideramos la matriz como beneficios, el criterio de Laplace elegiría la Línea de Edición Limitada ($d_4$) porque presenta el mejor promedio.
+
+**Respuesta:** FALSO.
+
+**3.** Si consideramos la matriz como costes (situación desfavorable), el criterio optimista (minimín) elegiría la alternativa con el menor valor posible de toda la matriz.
+
+**Respuesta:** VERDADERO.
+
+**4.** Si consideramos la matriz como beneficios, según el criterio pesimista de Wald, la alternativa $d_3$ (Línea Premium) es la mejor opción.
+
+**Respuesta:** FALSO.
+
+**5.** Para aplicar el criterio de Hurwicz a esta matriz, es estrictamente necesario que definamos previamente un índice de optimismo $\alpha$ comprendido entre 0 y 1.
+
+**Respuesta:** VERDADERO.
+
+### Problema 2: La Floristería en Cádiz
+
+**Contexto:**
+
+La "Floristería Pétalos" de Cádiz está preparando su campaña especial de primavera con tulipanes de Holanda. El dueño tiene que decidir cuántos lotes encargar antes de que empiece la temporada. Las alternativas de decisión son:
+
+- $d_1$: Encargar 100 lotes.
+
+- $d_2$: Encargar 200 lotes.
+
+- $d_3$: Encargar 300 lotes.
+
+- $d_4$: Encargar 400 lotes.
+
+El beneficio dependerá de la demanda de los clientes (estados de la naturaleza):
+
+- $e_1$: Demanda baja (se demandan 100 lotes).
+
+- $e_2$: Demanda media (se demandan 200 lotes).
+
+- $e_3$: Demanda alta (se demandan 300 lotes).
+
+**Datos económicos:**
+
+Cada lote de tulipanes le cuesta a la floristería 50 euros. Durante la temporada, cada lote se vende a 120 euros. Los lotes que no se logran vender se marchitan y se tiran a la basura (no generan ingresos).
+
+**Cuestionario Verdadero/Falso (Problema 2):**
+
+**1.** Según el criterio pesimista de Wald (Maximin), la floristería elegiría encargar 100 lotes ($d_1$) porque le garantiza un beneficio mínimo de 7000 euros, evitando los riesgos de grandes pérdidas.
+
+**Respuesta:** VERDADERO.
+
+**2.** Si aplicamos el criterio optimista (Maximax), el dueño encargará 400 lotes ($d_4$) porque espera ganar el máximo dinero posible de toda la tabla.
+
+**Respuesta:** FALSO.
+
+**3.** Según el criterio de Laplace (asumiendo probabilidades iguales), la mejor alternativa matemáticamente es la $d_1$.
+
+**Respuesta:** FALSO.
+
+**4.** Si estuviéramos ante un problema exclusivo de costes (situación desfavorable), el criterio pesimista (Minimax) buscaría el mayor coste en cada alternativa y elegiría el menor de ellos.
+
+**Respuesta:** VERDADERO.
+
+**5.** El criterio de Savage funciona eligiendo directamente la alternativa con mayores valores en la matriz original.
+
+**Respuesta:** FALSO.
