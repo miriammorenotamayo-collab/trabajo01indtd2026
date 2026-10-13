@@ -15,7 +15,7 @@ source("teoriadecision_funciones_incertidumbre.R")
 
 ```
 
-### Problema 1: La empresa de maquillaje
+# *Problema 1: La empresa de maquillaje*
 
 **Contexto:**
 
@@ -76,7 +76,7 @@ criterio.Savage(tabla_p1, favorable=FALSE)
 criterio.Laplace(tabla_p1, favorable=FALSE)
 ```
 
-**Cuestionario Verdadero/Falso (Problema 1):**
+### **Cuestionario Verdadero/Falso (Problema 1):**
 
 **1.** Si consideramos la matriz como beneficios (situación favorable), según el criterio optimista (maximax), la mejor decisión es la Línea Premium ($d_3$).
 
@@ -98,7 +98,7 @@ criterio.Laplace(tabla_p1, favorable=FALSE)
 
 **Respuesta:** VERDADERO. *(Justificación: La fórmula del criterio de Hurwicz requiere ponderar los valores máximos y mínimos mediante este parámetro* $\alpha$, sin el cual no se puede calcular).
 
-### Problema 2: La Floristería en Cádiz (Solución con tabla única)
+# *Problema 2: La Floristería en Cádiz (Solución con tabla única)*
 
 La "Floristería Pétalos" de Cádiz está preparando su campaña especial de primavera con tulipanes de Holanda. El dueño tiene que decidir cuántos lotes encargar antes de que empiece la temporada. Las alternativas de decisión son:
 
@@ -161,7 +161,7 @@ Para este segundo problema, al ser una situación real de beneficios (favorable)
 criterio.Todos(tabla_p2, alfa=0.5, favorable=TRUE)
 ```
 
-**Cuestionario Verdadero/Falso (Problema 2):**
+### **Cuestionario Verdadero/Falso (Problema 2):**
 
 **1.** Según el criterio pesimista de Wald (Maximin), la floristería elegiría encargar 100 lotes ($d_1$) porque le garantiza un beneficio mínimo de 7000 euros, evitando los riesgos de grandes pérdidas.
 

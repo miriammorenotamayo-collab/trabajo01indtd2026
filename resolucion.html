@@ -141,8 +141,8 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"teoriadecision_funciones_incertidumbre.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="problema-1-la-empresa-de-maquillaje" class="level3">
-<h3 class="anchored" data-anchor-id="problema-1-la-empresa-de-maquillaje">Problema 1: La empresa de maquillaje</h3>
+<section id="problema-1-la-empresa-de-maquillaje" class="level1">
+<h1><em>Problema 1: La empresa de maquillaje</em></h1>
 <p><strong>Contexto:</strong></p>
 <p>La empresa de cosméticos “GlowBeauty” está planificando el lanzamiento de su nueva línea estrella para la próxima temporada. La directora de producto tiene sobre la mesa cuatro posibles líneas de maquillaje (alternativas de decisión):</p>
 <ul>
@@ -474,7 +474,8 @@ d4 (Ed. Limitada)
                 4 </code></pre>
 </div>
 </div>
-<p><strong>Cuestionario Verdadero/Falso (Problema 1):</strong></p>
+<section id="cuestionario-verdaderofalso-problema-1" class="level3">
+<h3 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-1"><strong>Cuestionario Verdadero/Falso (Problema 1):</strong></h3>
 <p><strong>1.</strong> Si consideramos la matriz como beneficios (situación favorable), según el criterio optimista (maximax), la mejor decisión es la Línea Premium (<span class="math inline">\(d_3\)</span>).</p>
 <p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: El criterio maximax busca el valor máximo de toda la matriz, que es el 90 correspondiente a la alternativa</em> <span class="math inline">\(d_3\)</span> en estado de auge).</p>
 <p><strong>2.</strong> Si consideramos la matriz como beneficios, el criterio de Laplace elegiría la Línea de Edición Limitada (<span class="math inline">\(d_4\)</span>) porque presenta el mejor promedio.</p>
@@ -486,8 +487,9 @@ d4 (Ed. Limitada)
 <p><strong>5.</strong> Para aplicar el criterio de Hurwicz a esta matriz, es estrictamente necesario que definamos previamente un índice de optimismo <span class="math inline">\(\alpha\)</span> comprendido entre 0 y 1.</p>
 <p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: La fórmula del criterio de Hurwicz requiere ponderar los valores máximos y mínimos mediante este parámetro</em> <span class="math inline">\(\alpha\)</span>, sin el cual no se puede calcular).</p>
 </section>
-<section id="problema-2-la-floristería-en-cádiz-solución-con-tabla-única" class="level3">
-<h3 class="anchored" data-anchor-id="problema-2-la-floristería-en-cádiz-solución-con-tabla-única">Problema 2: La Floristería en Cádiz (Solución con tabla única)</h3>
+</section>
+<section id="problema-2-la-floristería-en-cádiz-solución-con-tabla-única" class="level1">
+<h1><em>Problema 2: La Floristería en Cádiz (Solución con tabla única)</em></h1>
 <p>La “Floristería Pétalos” de Cádiz está preparando su campaña especial de primavera con tulipanes de Holanda. El dueño tiene que decidir cuántos lotes encargar antes de que empiece la temporada. Las alternativas de decisión son:</p>
 <ul>
 <li><p><span class="math inline">\(d_1\)</span>: Encargar 100 lotes.</p></li>
@@ -565,7 +567,8 @@ d4 (400 lotes)            4000          18708              0
 iAlt.Opt (fav.) d2 (200 lotes) d2 (200 lotes) d2 (200 lotes)</code></pre>
 </div>
 </div>
-<p><strong>Cuestionario Verdadero/Falso (Problema 2):</strong></p>
+<section id="cuestionario-verdaderofalso-problema-2" class="level3">
+<h3 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-2"><strong>Cuestionario Verdadero/Falso (Problema 2):</strong></h3>
 <p><strong>1.</strong> Según el criterio pesimista de Wald (Maximin), la floristería elegiría encargar 100 lotes (<span class="math inline">\(d_1\)</span>) porque le garantiza un beneficio mínimo de 7000 euros, evitando los riesgos de grandes pérdidas.</p>
 <p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: El peor escenario para</em> <span class="math inline">\(d_1\)</span> es ganar 7000€, mientras que las otras opciones tienen peores escenarios de 2000€, -3000€ y -8000€).</p>
 <p><strong>2.</strong> Si aplicamos el criterio optimista (Maximax), el dueño encargará 400 lotes (<span class="math inline">\(d_4\)</span>) porque espera ganar el máximo dinero posible de toda la tabla.</p>
@@ -576,6 +579,7 @@ iAlt.Opt (fav.) d2 (200 lotes) d2 (200 lotes) d2 (200 lotes)</code></pre>
 <p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: En costes, el analista pesimista busca el coste máximo de cada decisión y elige el que haga “menos daño”, minimizando el gasto máximo).</em></p>
 <p><strong>5.</strong> El criterio de Savage funciona eligiendo directamente la alternativa con mayores valores en la matriz original.</p>
 <p><strong>Respuesta:</strong> FALSO. <em>(Justificación: Savage no usa la matriz original, primero calcula una matriz de “arrepentimientos” o pérdidas de oportunidad frente a la mejor decisión posible en cada estado de la naturaleza).</em></p>
+</section>
 </section>
 
 </main>
