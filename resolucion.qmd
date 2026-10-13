@@ -1,0 +1,184 @@
+---
+title: "Resolución Trabajo Individual"
+format: 
+  html: default
+  typst: default
+editor: visual
+---
+
+### Configuración inicial
+
+Primero, cargo las funciones del repositorio del profesor para poder utilizarlas.
+
+```{r}
+source("teoriadecision_funciones_incertidumbre.R")
+
+```
+
+### Problema 1: La empresa de maquillaje
+
+**Contexto:**
+
+La empresa de cosméticos "GlowBeauty" está planificando el lanzamiento de su nueva línea estrella para la próxima temporada. La directora de producto tiene sobre la mesa cuatro posibles líneas de maquillaje (alternativas de decisión):
+
+- $d_1$: Línea *Low-Cost* (enfocada en un público joven y precios bajos).
+
+- $d_2$: Línea Vegana/Natural (productos ecológicos de precio medio).
+
+- $d_3$: Línea *Premium* (alta gama, precios elevados).
+
+- $d_4$: Línea de Edición Limitada (colaboración con una *influencer* famosa).
+
+El éxito de estas líneas dependerá de la situación económica general y de la capacidad adquisitiva de los clientes (estados de la naturaleza):
+
+- $e_1$: Auge económico (alta disposición a gastar).
+
+- $e_2$: Economía estable (demanda normal).
+
+- $e_3$: Crisis económica (baja demanda, recortes en gastos no esenciales).
+
+Primero, creo la matriz de decisión en R:
+
+```{r}
+# Creamos la matriz del Problema 1
+datos_p1 <- c(30, 45, 60,
+              50, 50, 30,
+              90, 40, -20,
+              70, 20, 10)
+
+tabla_p1 <- matrix(datos_p1, nrow=4, byrow=TRUE)
+rownames(tabla_p1) <- c("d1 (Low-Cost)", "d2 (Vegana)", "d3 (Premium)", "d4 (Ed. Limitada)")
+colnames(tabla_p1) <- c("e1 (Auge)", "e2 (Estable)", "e3 (Crisis)")
+
+# Mostramos la tabla
+tabla_p1
+```
+
+A continuación, resouelvo aplicando cada método individualmente.
+
+**Situación Favorable (Beneficios):**
+
+```{r}
+criterio.Wald(tabla_p1, favorable=TRUE)
+criterio.Optimista(tabla_p1, favorable=TRUE)
+criterio.Hurwicz(tabla_p1, alfa=0.6, favorable=TRUE)
+criterio.Savage(tabla_p1, favorable=TRUE)
+criterio.Laplace(tabla_p1, favorable=TRUE)
+```
+
+**Situación Desfavorable (Costos):**
+
+```{r}
+criterio.Wald(tabla_p1, favorable=FALSE)
+criterio.Optimista(tabla_p1, favorable=FALSE)
+criterio.Hurwicz(tabla_p1, alfa=0.6, favorable=FALSE)
+criterio.Savage(tabla_p1, favorable=FALSE)
+criterio.Laplace(tabla_p1, favorable=FALSE)
+```
+
+**Cuestionario Verdadero/Falso (Problema 1):**
+
+**1.** Si consideramos la matriz como beneficios (situación favorable), según el criterio optimista (maximax), la mejor decisión es la Línea Premium ($d_3$).
+
+**Respuesta:** VERDADERO. *(Justificación: El criterio maximax busca el valor máximo de toda la matriz, que es el 90 correspondiente a la alternativa* $d_3$ en estado de auge).
+
+**2.** Si consideramos la matriz como beneficios, el criterio de Laplace elegiría la Línea de Edición Limitada ($d_4$) porque presenta el mejor promedio.
+
+**Respuesta:** FALSO. *(Justificación: El mejor promedio lo presenta la alternativa* $d_1$ (45), mientras que la $d_4$ tiene un promedio inferior (33.3)).
+
+**3.** Si consideramos la matriz como costes (situación desfavorable), el criterio optimista (minimín) elegiría la alternativa con el menor valor posible de toda la matriz.
+
+**Respuesta:** VERDADERO. *(Justificación: En una situación de costes, lo más optimista es incurrir en el menor gasto posible, por lo que se busca el mínimo de los mínimos de la matriz).*
+
+**4.** Si consideramos la matriz como beneficios, según el criterio pesimista de Wald, la alternativa $d_3$ (Línea Premium) es la mejor opción.
+
+**Respuesta:** FALSO. *(Justificación: El criterio de Wald elige el máximo de los mínimos. El peor escenario de* $d_3$ es -20, que es el peor resultado posible, por lo que Wald jamás la elegiría. Elegiría $d_1$ o $d_2$ (30)).
+
+**5.** Para aplicar el criterio de Hurwicz a esta matriz, es estrictamente necesario que definamos previamente un índice de optimismo $\alpha$ comprendido entre 0 y 1.
+
+**Respuesta:** VERDADERO. *(Justificación: La fórmula del criterio de Hurwicz requiere ponderar los valores máximos y mínimos mediante este parámetro* $\alpha$, sin el cual no se puede calcular).
+
+### Problema 2: La Floristería en Cádiz (Solución con tabla única)
+
+La "Floristería Pétalos" de Cádiz está preparando su campaña especial de primavera con tulipanes de Holanda. El dueño tiene que decidir cuántos lotes encargar antes de que empiece la temporada. Las alternativas de decisión son:
+
+- $d_1$: Encargar 100 lotes.
+
+- $d_2$: Encargar 200 lotes.
+
+- $d_3$: Encargar 300 lotes.
+
+- $d_4$: Encargar 400 lotes.
+
+El beneficio dependerá de la demanda de los clientes (estados de la naturaleza):
+
+- $e_1$: Demanda baja (se demandan 100 lotes).
+
+- $e_2$: Demanda media (se demandan 200 lotes).
+
+- $e_3$: Demanda alta (se demandan 300 lotes).
+
+**Datos económicos:**
+
+Cada lote de tulipanes le cuesta a la floristería 50 euros. Durante la temporada, cada lote se vende a 120 euros. Los lotes que no se logran vender se marchitan y se tiran a la basura (no generan ingresos).
+
+Para este problema, calcularemos primero los beneficios en función de las compras y las ventas. El coste es de 50€ por lote y el precio de venta es de 120€. Hay que tener en cuenta que la cantidad vendida siempre será el mínimo entre lo que compramos y lo que los clientes demandan.
+
+```{r}
+# Definimos los costes y precios
+coste_lote <- 50
+precio_venta <- 120
+
+# Calculamos los beneficios: (Lotes vendidos * precio_venta) - (Lotes comprados * coste_lote)
+
+# Alternativa d1: Comprar 100 lotes (Coste fijo = 100 * 50 = 5000)
+# Como la demanda mínima es 100, siempre vende los 100 lotes
+d1 <- c(100*120 - 5000, 100*120 - 5000, 100*120 - 5000)
+
+# Alternativa d2: Comprar 200 lotes (Coste fijo = 200 * 50 = 10000)
+d2 <- c(100*120 - 10000, 200*120 - 10000, 200*120 - 10000)
+
+# Alternativa d3: Comprar 300 lotes (Coste fijo = 300 * 50 = 15000)
+d3 <- c(100*120 - 15000, 200*120 - 15000, 300*120 - 15000)
+
+# Alternativa d4: Comprar 400 lotes (Coste fijo = 400 * 50 = 20000)
+# Aunque compre 400, nunca venderá más de 300 porque es la demanda máxima
+d4 <- c(100*120 - 20000, 200*120 - 20000, 300*120 - 20000)
+
+# Unimos todo en la matriz final
+tabla_p2 <- rbind(d1, d2, d3, d4)
+rownames(tabla_p2) <- c("d1 (100 lotes)", "d2 (200 lotes)", "d3 (300 lotes)", "d4 (400 lotes)")
+colnames(tabla_p2) <- c("e1 (Demanda 100)", "e2 (Demanda 200)", "e3 (Demanda 300)")
+
+# Mostramos la matriz generada
+tabla_p2
+```
+
+Para este segundo problema, al ser una situación real de beneficios (favorable), se pide resolverlo utilizando la función que devuelve todos los métodos en una única tabla resumen. Usaremos un índice de optimismo $\alpha = 0.5$:
+
+```{r}
+# Aplicamos la función que devuelve la tabla resumen con todos los métodos
+criterio.Todos(tabla_p2, alfa=0.5, favorable=TRUE)
+```
+
+**Cuestionario Verdadero/Falso (Problema 2):**
+
+**1.** Según el criterio pesimista de Wald (Maximin), la floristería elegiría encargar 100 lotes ($d_1$) porque le garantiza un beneficio mínimo de 7000 euros, evitando los riesgos de grandes pérdidas.
+
+**Respuesta:** VERDADERO. *(Justificación: El peor escenario para* $d_1$ es ganar 7000€, mientras que las otras opciones tienen peores escenarios de 2000€, -3000€ y -8000€).
+
+**2.** Si aplicamos el criterio optimista (Maximax), el dueño encargará 400 lotes ($d_4$) porque espera ganar el máximo dinero posible de toda la tabla.
+
+**Respuesta:** FALSO. *(Justificación: El máximo beneficio posible se obtiene con la opción* $d_3$ (21000€). Aunque compre 400 lotes ($d_4$), la demanda máxima estimada es de 300, por lo que esos 100 lotes extra solo le generarían gastos adicionales).
+
+**3.** Según el criterio de Laplace (asumiendo probabilidades iguales), la mejor alternativa matemáticamente es la $d_1$.
+
+**Respuesta:** FALSO. *(Justificación: Si calculamos el promedio, la* $d_2$ tiene una media de 10000€, superior a los 7000€ de media de la $d_1$).
+
+**4.** Si estuviéramos ante un problema exclusivo de costes (situación desfavorable), el criterio pesimista (Minimax) buscaría el mayor coste en cada alternativa y elegiría el menor de ellos.
+
+**Respuesta:** VERDADERO. *(Justificación: En costes, el analista pesimista busca el coste máximo de cada decisión y elige el que haga "menos daño", minimizando el gasto máximo).*
+
+**5.** El criterio de Savage funciona eligiendo directamente la alternativa con mayores valores en la matriz original.
+
+**Respuesta:** FALSO. *(Justificación: Savage no usa la matriz original, primero calcula una matriz de "arrepentimientos" o pérdidas de oportunidad frente a la mejor decisión posible en cada estado de la naturaleza).*
