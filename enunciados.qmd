@@ -31,34 +31,34 @@ El éxito de estas líneas dependerá de la situación económica general y de l
 La matriz de resultados estimada para los próximos meses es la siguiente:
 
 |                          |               |                  |                 |
-|--------------------|-----------------|-----------------|-----------------|
+|-----------------------|-----------------|-----------------|-----------------|
 |                          | **e1​ (Auge)** | **e2​ (Estable)** | **e3​ (Crisis)** |
 | $d_1$ (*Low-Cost*)       | 30            | 45               | 60              |
 | $d_2$ (Vegana)           | 50            | 50               | 30              |
 | $d_3$ (*Premium*)        | 90            | 40               | -20             |
 | $d_4$ (Edición Limitada) | 70            | 20               | 10              |
 
+Los valores recogidos en la matriz están expresados en miles de euros.
+
+Para analizar el problema, se considerarán dos interpretaciones de la matriz de decisión. En primer lugar, se supondrá que los valores representan **beneficios**, por lo que el objetivo será maximizar los resultados. Posteriormente, se interpretarán como **costes**, de manera que el objetivo será minimizarlos.
+
+Así, se podrán aplicar los criterios de decisión bajo incertidumbre en ambos casos y comparar las alternativas óptimas obtenidas.
+
 ### **Cuestionario Verdadero/Falso (Problema 1):**
 
 **1.** Si consideramos la matriz como beneficios (situación favorable), según el criterio optimista (maximax), la mejor decisión es la Línea Premium ($d_3$).
 
-**Respuesta:** VERDADERO.
-
 **2.** Si consideramos la matriz como beneficios, el criterio de Laplace elegiría la Línea de Edición Limitada ($d_4$) porque presenta el mejor promedio.
-
-**Respuesta:** FALSO.
 
 **3.** Si consideramos la matriz como costes (situación desfavorable), el criterio optimista (minimín) elegiría la alternativa con el menor valor posible de toda la matriz.
 
-**Respuesta:** VERDADERO.
-
 **4.** Si consideramos la matriz como beneficios, según el criterio pesimista de Wald, la alternativa $d_3$ (Línea Premium) es la mejor opción.
-
-**Respuesta:** FALSO.
 
 **5.** Para aplicar el criterio de Hurwicz a esta matriz, es estrictamente necesario que definamos previamente un índice de optimismo $\alpha$ comprendido entre 0 y 1.
 
-**Respuesta:** VERDADERO.
+### Respuestas verdaderas
+
+Las afirmaciones verdaderas del cuestionario son la **1, la 3 y la 5**.
 
 ------------------------------------------------------------------------
 
@@ -92,20 +92,14 @@ Cada lote de tulipanes le cuesta a la floristería 50 euros. Durante la temporad
 
 **1.** Según el criterio pesimista de Wald (Maximin), la floristería elegiría encargar 100 lotes ($d_1$) porque le garantiza un beneficio mínimo de 7000 euros, evitando los riesgos de grandes pérdidas.
 
-**Respuesta:** VERDADERO.
-
 **2.** Si aplicamos el criterio optimista (Maximax), el dueño encargará 400 lotes ($d_4$) porque espera ganar el máximo dinero posible de toda la tabla.
-
-**Respuesta:** FALSO.
 
 **3.** Según el criterio de Laplace (asumiendo probabilidades iguales), la mejor alternativa matemáticamente es la $d_1$.
 
-**Respuesta:** FALSO.
-
 **4.** Si estuviéramos ante un problema exclusivo de costes (situación desfavorable), el criterio pesimista (Minimax) buscaría el mayor coste en cada alternativa y elegiría el menor de ellos.
-
-**Respuesta:** VERDADERO.
 
 **5.** El criterio de Savage funciona eligiendo directamente la alternativa con mayores valores en la matriz original.
 
-**Respuesta:** FALSO.
+### Respuestas verdaderas
+
+Las afirmaciones verdaderas del cuestionario son la **1 y la 4**.

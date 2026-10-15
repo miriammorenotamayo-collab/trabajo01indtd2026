@@ -134,8 +134,8 @@ window.Quarto = {
 </header>
 
 
-<section id="configuración-inicial" class="level3">
-<h3 class="anchored" data-anchor-id="configuración-inicial">Configuración inicial</h3>
+<section id="configuración-inicial" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-inicial">Configuración inicial</h2>
 <p>Primero, cargo las funciones del repositorio del profesor para poder utilizarlas.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"teoriadecision_funciones_incertidumbre.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -179,8 +179,9 @@ d3 (Premium)             90           40         -20
 d4 (Ed. Limitada)        70           20          10</code></pre>
 </div>
 </div>
-<p>A continuación, resouelvo aplicando cada método individualmente.</p>
-<p><strong>Situación Favorable (Beneficios):</strong></p>
+<p>A continuación, se aplican individualmente los criterios clásicos de decisión bajo incertidumbre, tanto para una situación favorable (beneficios) como para una desfavorable (costes).</p>
+<section id="situación-favorable-beneficios" class="level2">
+<h2 class="anchored" data-anchor-id="situación-favorable-beneficios"><strong>Situación Favorable (Beneficios):</strong></h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Wald</span>(tabla_p1, <span class="at">favorable=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -234,13 +235,13 @@ $AlternativaOptima
 d3 (Premium) 
            3 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tabla_p1, <span class="at">alfa=</span><span class="fl">0.6</span>, <span class="at">favorable=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tabla_p1, <span class="at">alfa=</span><span class="fl">0.5</span>, <span class="at">favorable=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$criterio
 [1] "Hurwicz"
 
 $alfa
-[1] 0.6
+[1] 0.5
 
 $metodo
 [1] "favorable"
@@ -254,10 +255,10 @@ d4 (Ed. Limitada)        70           20          10
 
 $ValorAlternativas
     d1 (Low-Cost)       d2 (Vegana)      d3 (Premium) d4 (Ed. Limitada) 
-               48                42                46                46 
+               45                40                35                40 
 
 $ValorOptimo
-[1] 48
+[1] 45
 
 $AlternativaOptima
 d1 (Low-Cost) 
@@ -327,7 +328,17 @@ d1 (Low-Cost)
             1 </code></pre>
 </div>
 </div>
-<p><strong>Situación Desfavorable (Costos):</strong></p>
+<p><strong>Interpretación de los resultados:</strong></p>
+<ul>
+<li><strong>Criterio de Wald:</strong> Las alternativas óptimas son <span class="math inline">\(d_1\)</span> y <span class="math inline">\(d_2\)</span>, ya que ambas garantizan el mayor beneficio mínimo, igual a 30.</li>
+<li><strong>Criterio optimista:</strong> Se elige <span class="math inline">\(d_3\)</span>, puesto que puede alcanzar el mayor beneficio posible, igual a 90.</li>
+<li><strong>Criterio de Hurwicz (<span class="math inline">\(\alpha = 0,5\)</span>):</strong> La alternativa óptima es <span class="math inline">\(d_1\)</span>, con un valor de 45, al considerar por igual los resultados más favorables y desfavorables.</li>
+<li><strong>Criterio de Savage:</strong> Se elige <span class="math inline">\(d_2\)</span>, ya que presenta el menor arrepentimiento máximo, igual a 40.</li>
+<li><strong>Criterio de Laplace:</strong> La alternativa óptima es <span class="math inline">\(d_1\)</span>, con un beneficio medio de 45, suponiendo que todos los estados de la naturaleza son igualmente probables.</li>
+</ul>
+</section>
+<section id="situación-desfavorable-costos" class="level2">
+<h2 class="anchored" data-anchor-id="situación-desfavorable-costos"><strong>Situación Desfavorable (Costos):</strong></h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Wald</span>(tabla_p1, <span class="at">favorable=</span><span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -381,13 +392,13 @@ $AlternativaOptima
 d3 (Premium) 
            3 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tabla_p1, <span class="at">alfa=</span><span class="fl">0.6</span>, <span class="at">favorable=</span><span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tabla_p1, <span class="at">alfa=</span><span class="fl">0.5</span>, <span class="at">favorable=</span><span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$criterio
 [1] "Hurwicz"
 
 $alfa
-[1] 0.6
+[1] 0.5
 
 $metodo
 [1] "desfavorable"
@@ -401,10 +412,10 @@ d4 (Ed. Limitada)        70           20          10
 
 $ValorAlternativas
     d1 (Low-Cost)       d2 (Vegana)      d3 (Premium) d4 (Ed. Limitada) 
-               42                38                24                34 
+               45                40                35                40 
 
 $ValorOptimo
-[1] 24
+[1] 35
 
 $AlternativaOptima
 d3 (Premium) 
@@ -474,8 +485,17 @@ d4 (Ed. Limitada)
                 4 </code></pre>
 </div>
 </div>
-<section id="cuestionario-verdaderofalso-problema-1" class="level3">
-<h3 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-1"><strong>Cuestionario Verdadero/Falso (Problema 1):</strong></h3>
+<p><strong>Interpretación de los resultados:</strong></p>
+<ul>
+<li><strong>Criterio de Wald:</strong> La alternativa óptima es <span class="math inline">\(d_2\)</span>, puesto que presenta el menor coste máximo, igual a 50.</li>
+<li><strong>Criterio optimista:</strong> Se elige <span class="math inline">\(d_3\)</span>, ya que puede alcanzar el menor coste posible, igual a −20.</li>
+<li><strong>Criterio de Hurwicz (<span class="math inline">\(\alpha = 0,5\)</span>):</strong> La alternativa óptima es <span class="math inline">\(d_3\)</span>, con un valor de 35, al ponderar por igual los costes extremos.</li>
+<li><strong>Criterio de Savage:</strong> Se elige <span class="math inline">\(d_4\)</span>, ya que presenta el menor arrepentimiento máximo, igual a 40.</li>
+<li><strong>Criterio de Laplace:</strong> La alternativa óptima es <span class="math inline">\(d_4\)</span>, con un coste medio aproximado de 33,33, suponiendo que todos los estados son igualmente probables.</li>
+</ul>
+</section>
+<section id="cuestionario-verdaderofalso-problema-1" class="level2">
+<h2 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-1"><strong>Cuestionario Verdadero/Falso (Problema 1):</strong></h2>
 <p><strong>1.</strong> Si consideramos la matriz como beneficios (situación favorable), según el criterio optimista (maximax), la mejor decisión es la Línea Premium (<span class="math inline">\(d_3\)</span>).</p>
 <p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: El criterio maximax busca el valor máximo de toda la matriz, que es el 90 correspondiente a la alternativa</em> <span class="math inline">\(d_3\)</span> en estado de auge).</p>
 <p><strong>2.</strong> Si consideramos la matriz como beneficios, el criterio de Laplace elegiría la Línea de Edición Limitada (<span class="math inline">\(d_4\)</span>) porque presenta el mejor promedio.</p>
@@ -486,6 +506,10 @@ d4 (Ed. Limitada)
 <p><strong>Respuesta:</strong> FALSO. <em>(Justificación: El criterio de Wald elige el máximo de los mínimos. El peor escenario de</em> <span class="math inline">\(d_3\)</span> es -20, que es el peor resultado posible, por lo que Wald jamás la elegiría. Elegiría <span class="math inline">\(d_1\)</span> o <span class="math inline">\(d_2\)</span> (30)).</p>
 <p><strong>5.</strong> Para aplicar el criterio de Hurwicz a esta matriz, es estrictamente necesario que definamos previamente un índice de optimismo <span class="math inline">\(\alpha\)</span> comprendido entre 0 y 1.</p>
 <p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: La fórmula del criterio de Hurwicz requiere ponderar los valores máximos y mínimos mediante este parámetro</em> <span class="math inline">\(\alpha\)</span>, sin el cual no se puede calcular).</p>
+</section>
+<section id="respuestas-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="respuestas-verdaderas">Respuestas verdaderas</h2>
+<p>Las afirmaciones verdaderas del cuestionario son la <strong>1, la 3 y la 5</strong>.</p>
 </section>
 </section>
 <section id="problema-2-la-floristería-en-cádiz-solución-con-tabla-única" class="level1">
@@ -506,6 +530,8 @@ d4 (Ed. Limitada)
 <p><strong>Datos económicos:</strong></p>
 <p>Cada lote de tulipanes le cuesta a la floristería 50 euros. Durante la temporada, cada lote se vende a 120 euros. Los lotes que no se logran vender se marchitan y se tiran a la basura (no generan ingresos).</p>
 <p>Para este problema, calcularemos primero los beneficios en función de las compras y las ventas. El coste es de 50€ por lote y el precio de venta es de 120€. Hay que tener en cuenta que la cantidad vendida siempre será el mínimo entre lo que compramos y lo que los clientes demandan.</p>
+<section id="construcción-de-la-matriz-de-decisión" class="level2">
+<h2 class="anchored" data-anchor-id="construcción-de-la-matriz-de-decisión">Construcción de la matriz de decisión</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definimos los costes y precios</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>coste_lote <span class="ot">&lt;-</span> <span class="dv">50</span></span>
@@ -567,8 +593,16 @@ d4 (400 lotes)            4000          18708              0
 iAlt.Opt (fav.) d2 (200 lotes) d2 (200 lotes) d2 (200 lotes)</code></pre>
 </div>
 </div>
-<section id="cuestionario-verdaderofalso-problema-2" class="level3">
-<h3 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-2"><strong>Cuestionario Verdadero/Falso (Problema 2):</strong></h3>
+</section>
+<section id="interpretación-de-los-resultados" class="level2">
+<h2 class="anchored" data-anchor-id="interpretación-de-los-resultados">Interpretación de los resultados</h2>
+<p>Los criterios aplicados no coinciden en una única alternativa óptima, ya que cada uno considera de manera diferente la incertidumbre.</p>
+<p>El criterio de Wald selecciona <span class="math inline">\((d_1)\)</span> (100 tulipanes), al adoptar una actitud pesimista, mientras que los criterios Optimista y Hurwicz (con <span class="math inline">\(\alpha = 0.5\)</span>) seleccionan <span class="math inline">\((d_3)\)</span> (300 tulipanes).</p>
+<p>Por su parte, los criterios de Savage, Laplace, Punto Ideal y Veces Óptima coinciden en elegir <span class="math inline">\((d_2)\)</span> (200 tulipanes).</p>
+<p>Por tanto, la compra de 200 tulipanes es la alternativa respaldada por un mayor número de criterios, aunque la decisión final dependerá de la actitud del decisor frente a la incertidumbre.</p>
+</section>
+<section id="cuestionario-verdaderofalso-problema-2" class="level2">
+<h2 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-2"><strong>Cuestionario Verdadero/Falso (Problema 2):</strong></h2>
 <p><strong>1.</strong> Según el criterio pesimista de Wald (Maximin), la floristería elegiría encargar 100 lotes (<span class="math inline">\(d_1\)</span>) porque le garantiza un beneficio mínimo de 7000 euros, evitando los riesgos de grandes pérdidas.</p>
 <p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: El peor escenario para</em> <span class="math inline">\(d_1\)</span> es ganar 7000€, mientras que las otras opciones tienen peores escenarios de 2000€, -3000€ y -8000€).</p>
 <p><strong>2.</strong> Si aplicamos el criterio optimista (Maximax), el dueño encargará 400 lotes (<span class="math inline">\(d_4\)</span>) porque espera ganar el máximo dinero posible de toda la tabla.</p>
@@ -579,6 +613,10 @@ iAlt.Opt (fav.) d2 (200 lotes) d2 (200 lotes) d2 (200 lotes)</code></pre>
 <p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: En costes, el analista pesimista busca el coste máximo de cada decisión y elige el que haga “menos daño”, minimizando el gasto máximo).</em></p>
 <p><strong>5.</strong> El criterio de Savage funciona eligiendo directamente la alternativa con mayores valores en la matriz original.</p>
 <p><strong>Respuesta:</strong> FALSO. <em>(Justificación: Savage no usa la matriz original, primero calcula una matriz de “arrepentimientos” o pérdidas de oportunidad frente a la mejor decisión posible en cada estado de la naturaleza).</em></p>
+</section>
+<section id="respuestas-verdaderas-1" class="level2">
+<h2 class="anchored" data-anchor-id="respuestas-verdaderas-1">Respuestas verdaderas</h2>
+<p>Las afirmaciones verdaderas del cuestionario son la <strong>1 y la 4</strong>.</p>
 </section>
 </section>
 

@@ -6,7 +6,7 @@ format:
 editor: visual
 ---
 
-### Configuración inicial
+## Configuración inicial
 
 Primero, cargo las funciones del repositorio del profesor para poder utilizarlas.
 
@@ -54,29 +54,45 @@ colnames(tabla_p1) <- c("e1 (Auge)", "e2 (Estable)", "e3 (Crisis)")
 tabla_p1
 ```
 
-A continuación, resouelvo aplicando cada método individualmente.
+A continuación, se aplican individualmente los criterios clásicos de decisión bajo incertidumbre, tanto para una situación favorable (beneficios) como para una desfavorable (costes).
 
-**Situación Favorable (Beneficios):**
+## **Situación Favorable (Beneficios):**
 
 ```{r}
 criterio.Wald(tabla_p1, favorable=TRUE)
 criterio.Optimista(tabla_p1, favorable=TRUE)
-criterio.Hurwicz(tabla_p1, alfa=0.6, favorable=TRUE)
+criterio.Hurwicz(tabla_p1, alfa=0.5, favorable=TRUE)
 criterio.Savage(tabla_p1, favorable=TRUE)
 criterio.Laplace(tabla_p1, favorable=TRUE)
 ```
 
-**Situación Desfavorable (Costos):**
+**Interpretación de los resultados:**
+
+- **Criterio de Wald:** Las alternativas óptimas son $d_1$ y $d_2$, ya que ambas garantizan el mayor beneficio mínimo, igual a 30.
+- **Criterio optimista:** Se elige $d_3$, puesto que puede alcanzar el mayor beneficio posible, igual a 90.
+- **Criterio de Hurwicz ($\alpha = 0,5$):** La alternativa óptima es $d_1$, con un valor de 45, al considerar por igual los resultados más favorables y desfavorables.
+- **Criterio de Savage:** Se elige $d_2$, ya que presenta el menor arrepentimiento máximo, igual a 40.
+- **Criterio de Laplace:** La alternativa óptima es $d_1$, con un beneficio medio de 45, suponiendo que todos los estados de la naturaleza son igualmente probables.
+
+## **Situación Desfavorable (Costos):**
 
 ```{r}
 criterio.Wald(tabla_p1, favorable=FALSE)
 criterio.Optimista(tabla_p1, favorable=FALSE)
-criterio.Hurwicz(tabla_p1, alfa=0.6, favorable=FALSE)
+criterio.Hurwicz(tabla_p1, alfa=0.5, favorable=FALSE)
 criterio.Savage(tabla_p1, favorable=FALSE)
 criterio.Laplace(tabla_p1, favorable=FALSE)
 ```
 
-### **Cuestionario Verdadero/Falso (Problema 1):**
+**Interpretación de los resultados:**
+
+- **Criterio de Wald:** La alternativa óptima es $d_2$, puesto que presenta el menor coste máximo, igual a 50.
+- **Criterio optimista:** Se elige $d_3$, ya que puede alcanzar el menor coste posible, igual a −20.
+- **Criterio de Hurwicz ($\alpha = 0,5$):** La alternativa óptima es $d_3$, con un valor de 35, al ponderar por igual los costes extremos.
+- **Criterio de Savage:** Se elige $d_4$, ya que presenta el menor arrepentimiento máximo, igual a 40.
+- **Criterio de Laplace:** La alternativa óptima es $d_4$, con un coste medio aproximado de 33,33, suponiendo que todos los estados son igualmente probables.
+
+## **Cuestionario Verdadero/Falso (Problema 1):**
 
 **1.** Si consideramos la matriz como beneficios (situación favorable), según el criterio optimista (maximax), la mejor decisión es la Línea Premium ($d_3$).
 
@@ -97,6 +113,10 @@ criterio.Laplace(tabla_p1, favorable=FALSE)
 **5.** Para aplicar el criterio de Hurwicz a esta matriz, es estrictamente necesario que definamos previamente un índice de optimismo $\alpha$ comprendido entre 0 y 1.
 
 **Respuesta:** VERDADERO. *(Justificación: La fórmula del criterio de Hurwicz requiere ponderar los valores máximos y mínimos mediante este parámetro* $\alpha$, sin el cual no se puede calcular).
+
+## Respuestas verdaderas
+
+Las afirmaciones verdaderas del cuestionario son la **1, la 3 y la 5**.
 
 # *Problema 2: La Floristería en Cádiz (Solución con tabla única)*
 
@@ -124,6 +144,7 @@ Cada lote de tulipanes le cuesta a la floristería 50 euros. Durante la temporad
 
 Para este problema, calcularemos primero los beneficios en función de las compras y las ventas. El coste es de 50€ por lote y el precio de venta es de 120€. Hay que tener en cuenta que la cantidad vendida siempre será el mínimo entre lo que compramos y lo que los clientes demandan.
 
+## Construcción de la matriz de decisión
 ```{r}
 # Definimos los costes y precios
 coste_lote <- 50
@@ -161,7 +182,17 @@ Para este segundo problema, al ser una situación real de beneficios (favorable)
 criterio.Todos(tabla_p2, alfa=0.5, favorable=TRUE)
 ```
 
-### **Cuestionario Verdadero/Falso (Problema 2):**
+## Interpretación de los resultados
+
+Los criterios aplicados no coinciden en una única alternativa óptima, ya que cada uno considera de manera diferente la incertidumbre.
+
+El criterio de Wald selecciona $(d_1)$ (100 tulipanes), al adoptar una actitud pesimista, mientras que los criterios Optimista y Hurwicz (con $\alpha = 0.5$) seleccionan $(d_3)$ (300 tulipanes).
+
+Por su parte, los criterios de Savage, Laplace, Punto Ideal y Veces Óptima coinciden en elegir $(d_2)$ (200 tulipanes).
+
+Por tanto, la compra de 200 tulipanes es la alternativa respaldada por un mayor número de criterios, aunque la decisión final dependerá de la actitud del decisor frente a la incertidumbre.
+
+## **Cuestionario Verdadero/Falso (Problema 2):**
 
 **1.** Según el criterio pesimista de Wald (Maximin), la floristería elegiría encargar 100 lotes ($d_1$) porque le garantiza un beneficio mínimo de 7000 euros, evitando los riesgos de grandes pérdidas.
 
@@ -182,3 +213,7 @@ criterio.Todos(tabla_p2, alfa=0.5, favorable=TRUE)
 **5.** El criterio de Savage funciona eligiendo directamente la alternativa con mayores valores en la matriz original.
 
 **Respuesta:** FALSO. *(Justificación: Savage no usa la matriz original, primero calcula una matriz de "arrepentimientos" o pérdidas de oportunidad frente a la mejor decisión posible en cada estado de la naturaleza).*
+
+## Respuestas verdaderas
+
+Las afirmaciones verdaderas del cuestionario son la **1 y la 4**.
