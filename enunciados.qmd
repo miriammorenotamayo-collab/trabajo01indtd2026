@@ -6,6 +6,12 @@ format:
 editor: visual
 ---
 
+# Introducción
+
+En este documento se encuentran dos problemas de Teoría de la Decisión bajo Incertidumbre, en los que he planteado diferentes situaciones que requieren elegir entre varias alternativas sin conocer con certeza qué estado de la naturaleza se producirá.
+
+El primer problema se basa en una matriz de decisión con valores propuestos, mientras que el segundo plantea una situación de carácter realista. Ambos incluyen un cuestionario de verdadero o falso relacionado con los criterios de decisión estudiados en la asignatura.
+
 # *Problema 1: La empresa de maquillaje*
 
 **Contexto:**

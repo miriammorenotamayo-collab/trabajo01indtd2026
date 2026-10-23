@@ -6,6 +6,14 @@ format:
 editor: visual
 ---
 
+# Introducción
+
+En este documento se desarrolla la resolución de los dos problemas de Teoría de la Decisión bajo Incertidumbre planteados anteriormente, utilizando las funciones de R proporcionadas en la asignatura.
+
+En el primer problema se aplican individualmente los distintos criterios de decisión, considerando tanto una situación favorable (beneficios) como desfavorable (costes). En el segundo problema utilizo la función `criterio.Todos()` para obtener los resultados de todos los criterios en una única tabla.
+
+Finalmente, interpreto los resultados obtenidos y se justifican las respuestas de los cuestionarios de verdadero o falso correspondientes a cada problema.
+
 ## Configuración inicial
 
 Primero, cargo las funciones del repositorio del profesor para poder utilizarlas.
@@ -70,7 +78,7 @@ criterio.Laplace(tabla_p1, favorable=TRUE)
 
 - **Criterio de Wald:** Las alternativas óptimas son $d_1$ y $d_2$, ya que ambas garantizan el mayor beneficio mínimo, igual a 30.
 - **Criterio optimista:** Se elige $d_3$, puesto que puede alcanzar el mayor beneficio posible, igual a 90.
-- **Criterio de Hurwicz ($\alpha = 0,5$):** La alternativa óptima es $d_1$, con un valor de 45, al considerar por igual los resultados más favorables y desfavorables.
+- **Criterio de Hurwicz (**$\alpha = 0,5$): La alternativa óptima es $d_1$, con un valor de 45, al considerar por igual los resultados más favorables y desfavorables.
 - **Criterio de Savage:** Se elige $d_2$, ya que presenta el menor arrepentimiento máximo, igual a 40.
 - **Criterio de Laplace:** La alternativa óptima es $d_1$, con un beneficio medio de 45, suponiendo que todos los estados de la naturaleza son igualmente probables.
 
@@ -88,7 +96,7 @@ criterio.Laplace(tabla_p1, favorable=FALSE)
 
 - **Criterio de Wald:** La alternativa óptima es $d_2$, puesto que presenta el menor coste máximo, igual a 50.
 - **Criterio optimista:** Se elige $d_3$, ya que puede alcanzar el menor coste posible, igual a −20.
-- **Criterio de Hurwicz ($\alpha = 0,5$):** La alternativa óptima es $d_3$, con un valor de 35, al ponderar por igual los costes extremos.
+- **Criterio de Hurwicz (**$\alpha = 0,5$): La alternativa óptima es $d_3$, con un valor de 35, al ponderar por igual los costes extremos.
 - **Criterio de Savage:** Se elige $d_4$, ya que presenta el menor arrepentimiento máximo, igual a 40.
 - **Criterio de Laplace:** La alternativa óptima es $d_4$, con un coste medio aproximado de 33,33, suponiendo que todos los estados son igualmente probables.
 
@@ -145,6 +153,7 @@ Cada lote de tulipanes le cuesta a la floristería 50 euros. Durante la temporad
 Para este problema, calcularemos primero los beneficios en función de las compras y las ventas. El coste es de 50€ por lote y el precio de venta es de 120€. Hay que tener en cuenta que la cantidad vendida siempre será el mínimo entre lo que compramos y lo que los clientes demandan.
 
 ## Construcción de la matriz de decisión
+
 ```{r}
 # Definimos los costes y precios
 coste_lote <- 50
